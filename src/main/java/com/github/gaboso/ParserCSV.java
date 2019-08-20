@@ -19,6 +19,8 @@ public class ParserCSV {
 
     private static final Logger LOGGER = Logger.getLogger(ParserCSV.class);
     private static final String DELIMITER = "\t";
+    private static final String DOUBLE_QUOTE = "\"";
+    private static final String EMPTY_SPACE = "";
 
     private static final int TITLE_INDEX = 0;
     private static final int ID_INDEX = 1;
@@ -29,14 +31,14 @@ public class ParserCSV {
         if (columns.length > 1) {
             Issue issue = new Issue();
 
-            String title = columns[TITLE_INDEX];
-            title = title.replaceAll("\"", "");
-            issue.setTitle(title);
-
             String taskID = columns[ID_INDEX];
-            taskID = taskID.replaceAll("\"", "");
+            taskID = taskID.replaceAll(DOUBLE_QUOTE, EMPTY_SPACE);
             String markdownLink = LinkUtil.createMarkdownLink(taskID);
             issue.setDescription(markdownLink);
+
+            String title = columns[TITLE_INDEX];
+            title = title.replaceAll(DOUBLE_QUOTE, EMPTY_SPACE);
+            issue.setTitle(taskID + " - " + title);
             return issue;
         } else {
             return new Issue();
