@@ -1,9 +1,9 @@
 package com.github.gaboso;
 
+import java.util.List;
+
 import com.github.gaboso.model.Issue;
 import org.apache.log4j.Logger;
-
-import java.util.List;
 
 public class Main {
 
@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         ParserCSV parserCSV = new ParserCSV();
-        List<Issue> issues = parserCSV.getContent("FL_insurance_sample.csv");
+        List<Issue> issues = parserCSV.getContent("/home/gabrielcarvalho/Downloads/issues.csv");
 
         HTTPExecutor httpExecutor = new HTTPExecutor();
         httpExecutor.execute(issues);

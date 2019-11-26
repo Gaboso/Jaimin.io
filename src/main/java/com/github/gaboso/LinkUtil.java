@@ -2,7 +2,7 @@ package com.github.gaboso;
 
 public class LinkUtil {
 
-    private static final String RTC_LINK = "https://taskcontrol.com";
+    private static final String RTC_LINK = "https://clm.ungp.softplan.com.br/ccm/web/projects/OBRASGOV";
 
     private LinkUtil() {
     }
