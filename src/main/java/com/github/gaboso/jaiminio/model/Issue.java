@@ -1,4 +1,4 @@
-package com.github.gaboso.model;
+package com.github.gaboso.jaiminio.model;
 
 public class Issue {
 

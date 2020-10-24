@@ -1,13 +1,14 @@
-package com.github.gaboso;
+package com.github.gaboso.jaiminio;
 
-import com.github.gaboso.model.Issue;
+import com.github.gaboso.jaiminio.model.Issue;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class HTTPExecutor {
 
-    private static final Logger LOGGER = Logger.getLogger(HTTPExecutor.class);
+    private static final Logger LOGGER = LogManager.getLogger(HTTPExecutor.class);
 
     private static final String PRIVATE_TOKEN = "XXXXX";
     private static final String GIT_URL = "https://gitlab.example.com";

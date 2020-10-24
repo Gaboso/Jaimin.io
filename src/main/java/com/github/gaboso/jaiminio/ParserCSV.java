@@ -1,7 +1,8 @@
-package com.github.gaboso;
+package com.github.gaboso.jaiminio;
 
-import com.github.gaboso.model.Issue;
-import org.apache.log4j.Logger;
+import com.github.gaboso.jaiminio.model.Issue;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +18,8 @@ import java.util.stream.Collectors;
 
 public class ParserCSV {
 
-    private static final Logger LOGGER = Logger.getLogger(ParserCSV.class);
+    private static final Logger LOGGER = LogManager.getLogger(ParserCSV.class);
+
     private static final String DELIMITER = "\t";
     private static final String DOUBLE_QUOTE = "\"";
     private static final String EMPTY_SPACE = "";
@@ -25,19 +27,19 @@ public class ParserCSV {
     private static final int TITLE_INDEX = 0;
     private static final int ID_INDEX = 1;
 
-    private Function<String, Issue> mapToIssue = line -> {
+    private final Function<String, Issue> mapToIssue = line -> {
         String[] columns = line.split(DELIMITER);
 
         if (columns.length > 1) {
             Issue issue = new Issue();
 
             String taskID = columns[ID_INDEX];
-            taskID = taskID.replaceAll(DOUBLE_QUOTE, EMPTY_SPACE);
+            taskID = taskID.replace(DOUBLE_QUOTE, EMPTY_SPACE);
             String markdownLink = LinkUtil.createMarkdownLink(taskID);
             issue.setDescription(markdownLink);
 
             String title = columns[TITLE_INDEX];
-            title = title.replaceAll(DOUBLE_QUOTE, EMPTY_SPACE);
+            title = title.replace(DOUBLE_QUOTE, EMPTY_SPACE);
             issue.setTitle(taskID + " - " + title);
             return issue;
         } else {

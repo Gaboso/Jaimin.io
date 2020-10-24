@@ -1,4 +1,4 @@
-package com.github.gaboso;
+package com.github.gaboso.jaiminio;
 
 public class LinkUtil {
 
@@ -8,7 +8,7 @@ public class LinkUtil {
     }
 
     public static String createMarkdownLink(String taskID) {
-        return "[Link da tarefa no RTC](" + RTC_LINK + "#action=com.ibm.team.workitem.viewWorkItem&id=" + taskID + ")";
+        return "[Task link on RTC](" + RTC_LINK + "#action=com.ibm.team.workitem.viewWorkItem&id=" + taskID + ")";
     }
 
 }
