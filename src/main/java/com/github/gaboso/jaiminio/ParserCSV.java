@@ -42,9 +42,9 @@ public class ParserCSV {
             title = title.replace(DOUBLE_QUOTE, EMPTY_SPACE);
             issue.setTitle(taskID + " - " + title);
             return issue;
-        } else {
-            return new Issue();
         }
+
+        return new Issue();
     };
 
     public List<Issue> getContent(String filePath) {
@@ -53,16 +53,15 @@ public class ParserCSV {
         File file = new File(filePath);
 
         try (
-                InputStream inputStream = new FileInputStream(file);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_16LE))
+            InputStream inputStream = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_16LE))
         ) {
 
-            issues = reader
-                    .lines()
-                    .skip(1)
-                    .map(mapToIssue)
-                    .filter(issue -> issue.getTitle() != null)
-                    .collect(Collectors.toList());
+            issues = reader.lines()
+                           .skip(1)
+                           .map(mapToIssue)
+                           .filter(issue -> issue.getTitle() != null)
+                           .collect(Collectors.toList());
 
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
